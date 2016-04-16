@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name Lazyman Decliner
+// @name iDecline
 // @namespace https://steamcommunity.com/
 // @author Saša Savić <sasa.savic@protonmail.com>
 // @description Declines every trade (that is not confirmed).
@@ -11,7 +11,7 @@
 // @grant none
 // ==/UserScript==
 
-console.log("Starting lazymans decliner.");
+console.log("Starting to reject dem bitches.");
 
 // Extend array so it can search for values contained in itself
 Array.prototype.contains = function (value) {
@@ -34,7 +34,7 @@ if (urls_mytrades.contains(window.location.href)) {
     aDoneAll = document.createElement("a");
     aDoneAll.id = "repost-button";
     aDoneAll.className = "buttonright";
-    aDoneAll.innerHTML = "Mark all trades as done";
+    aDoneAll.innerHTML = "CLOSE ALL TRADES";
     aDoneAll.addEventListener("click", function () {
         var trades = document.querySelectorAll(".tradepoll");
         for (var i = 0; i < trades.length; i++) {
@@ -48,8 +48,8 @@ aDoneAllParent.insertBefore(aDoneAll, aDoneAllParent.firstChild);
     // We are not on CS:GO Lounge, so we must be on Steam.
     divCloseAll = document.createElement("div");
     divCloseAll.className = "btn_darkblue_white_innerfade btn_medium new_trade_offer_btn responsive_OnClickDismissMenu";
-    divCloseAll.innerHTML = "<span> Decline all trade offers...</span>";
-    divCloseAll.style="margin-top: 10px";
+    divCloseAll.innerHTML = "<span>Nabijem Vas Sve Na Kurac</span>";
+    divCloseAll.style="margin-top: 12px";
     divCloseAll.addEventListener("click", declineEverything);
     document.querySelector(".rightcol_controls_content").appendChild(divCloseAll);
 }
