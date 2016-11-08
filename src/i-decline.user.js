@@ -11,7 +11,7 @@
 // @grant none
 // ==/UserScript==
 
-console.log("Starting to reject dem bitches.");
+console.log("Starting iDecline.");
 
 // Extend array so it can search for values contained in itself
 Array.prototype.contains = function (value) {
