@@ -48,7 +48,7 @@ if (urls_mytrades.contains(window.location.href)) {
     // We are not on CS:GO Lounge, so we must be on Steam.
     divCloseAll = document.createElement("div");
     divCloseAll.className = "btn_darkblue_white_innerfade btn_medium new_trade_offer_btn responsive_OnClickDismissMenu";
-    divCloseAll.innerHTML = "<span>Nabijem Vas Sve Na Kurac</span>";
+    divCloseAll.innerHTML = "<span>Decline all trade requests</span>";
     divCloseAll.style="margin-top: 12px";
     divCloseAll.addEventListener("click", function () {
         var tradeOffers = document.querySelectorAll(".tradeoffer");
