@@ -29,10 +29,9 @@ Array.prototype.contains = function (value) {
 urls_mytrades = ["https://csgolounge.com/mytrades",
     "https://www.csgolounge.com/mytrades",
     "http://csgolounge.com/mytrades",
-    "http://www.csgolounge.com/mytrades",
-    "/trade"];
+    "http://www.csgolounge.com/mytrades"];
 
-if (urls_mytrades.contains(window.location.href)) {
+if (window.location.href.match(/https:\/\/csgolounge\.com\/trade\?t=[0-9]/)) {
     // We are on CS:GO Lounge trades page.
     aDoneAll = document.createElement("a");
     aDoneAll.id = "repost-button";
@@ -44,8 +43,8 @@ if (urls_mytrades.contains(window.location.href)) {
             trashTrade(trades[i].getAttribute("id").slice(5));
         }
     });
-aDoneAllParent = document.querySelector("article.standard");
-aDoneAllParent.insertBefore(aDoneAll, aDoneAllParent.firstChild);
+    aDoneAllParent = document.querySelector("article.standard");
+    aDoneAllParent.insertBefore(aDoneAll, aDoneAllParent.firstChild);
 
 } else if (urls_mytrades.contains(window.location.pathname)) {
     // We are still on CS:GO Lounge, and we want to clean comments section
@@ -66,7 +65,7 @@ aDoneAllParent.insertBefore(aDoneAll, aDoneAllParent.firstChild);
             clean.click();
         }, 1500);
     });
-    document.querySelector("body > main > section:nth-child(1) > div.box-shiny-alt > div:nth-child(1)").appendChild(purgeBtn);
+    document.querySelector(".half").appendChild(purgeBtn);
 
 } else {
     // We are not on CS:GO Lounge, so we must be on Steam.
