@@ -2,12 +2,14 @@
 // @name iDecline
 // @namespace https://steamcommunity.com/
 // @author Saša Savić <sasa.savic@protonmail.com>
-// @description Declines every trade (that is not confirmed).
-// @version 1.2.0
+// @description Mr.Proper All in One
+// @version 1.3.0
 // @include https://steamcommunity.com/id/*/tradeoffers/
 // @include http://steamcommunity.com/id/*/tradeoffers/
 // @include https://csgolounge.com/mytrades
 // @include http://csgolounge.com/mytrades
+// @include https://csgolounge.com/trade?t=*
+// @include http://csgolounge.com/trade?t=*
 // @grant none
 // ==/UserScript==
 
@@ -44,11 +46,32 @@ if (urls_mytrades.contains(window.location.href)) {
     aDoneAllParent = document.querySelector("article.standard");
     aDoneAllParent.insertBefore(aDoneAll, aDoneAllParent.firstChild);
 
+} else if (window.location.href.match(/https:\/\/csgolounge\.com\/trade\?t=[0-9]/)) {
+    // We are still on CS:GO Lounge, and we want to clean comments section
+    var trashCan = document.querySelectorAll("#messages img");
+    var img = "http://csgolounge.com/img/trash.png";
+    var clean = document.getElementsByClassName("buttonright")[0];
+
+    purgeBtn = document.createElement("a");
+    purgeBtn.className = "buttonright";
+    purgeBtn.innerHTML = "<div>PURGE</div>";
+    purgeBtn.addEventListener("click", function() {
+        for (i = 0; i < trashCan.length; i++) {
+            if (trashCan[i].src == img) {
+                trashCan[i].click();
+            }
+        }
+        setTimeout(function () {
+            clean.click();
+        }, 1500);
+    });
+    document.querySelector(".half").appendChild(purgeBtn);
+
 } else {
     // We are not on CS:GO Lounge, so we must be on Steam.
     divCloseAll = document.createElement("div");
     divCloseAll.className = "btn_darkblue_white_innerfade btn_medium new_trade_offer_btn responsive_OnClickDismissMenu";
-    divCloseAll.innerHTML = "<span>Decline all trade requests</span>";
+    divCloseAll.innerHTML = "<span>Decline All</span>";
     divCloseAll.style="margin-top: 12px";
     divCloseAll.addEventListener("click", function () {
         var tradeOffers = document.querySelectorAll(".tradeoffer");
